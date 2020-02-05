@@ -1,0 +1,14 @@
+
+<div class="content-header">
+    <div class="leftside-content-header">
+        <ul class="breadcrumbs">
+            {% for li in breadcrumb_list %}
+                {% if forloop.last %}
+                    <li><a>{{ li.title }}</a></li>
+                {% else %}
+                    <li><a href="{{ li.url }}">{{ li.title }}</a></li>
+                {% endif %}
+            {% endfor %}
+        </ul>
+    </div>
+</div>

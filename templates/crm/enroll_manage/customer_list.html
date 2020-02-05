@@ -1,0 +1,101 @@
+{% extends 'layout.html' %}
+
+{% block css %}
+    <style>
+        th, tr {
+            text-align: center;
+        }
+    </style>
+{% endblock %}
+{% block content %}
+    <div class="row animated fadeInUp">
+        <div class="col-sm-12 col-lg-12">
+            {% load rbac %}
+
+            {% if request|has_permission:'add_customer' %}
+                <a class="btn btn-primary" href="{% url 'add_customer' %}?{{ query_params }}">添加</a>
+            {% endif %}
+            <div>
+                <form action="" class="form-inline pull-right">
+                    <input type="text" name="query" class="form-control">
+                    <button class="btn btn-sm btn-primary"><i class="fa fa-search search" id="search-icon"
+                                                              aria-hidden="true"></i></button>
+                </form>
+            </div>
+            <form action="" method="post" class="form-inline">
+                {% csrf_token %}
+                <select name="action" class="form-control" style="margin: 5px 0">
+                    <option value="multi_delete">删除客户</option>
+                    {% if request.path_info == '/crm/my_customer/' %}
+                        <option value="multi_pub">放入公户</option>
+                    {% else %}
+                        <option value="multi_apply">放入私户</option>
+                    {% endif %}
+                </select>
+                <button class="btn btn-success btn-sm">提交</button>
+                <table class="table table-hover table-vcenter table-striped mb-0 text-nowrap">
+                    <thead>
+                    <tr>
+                        <th>选择</th>
+                        <th>序号</th>
+                        <th>QQ</th>
+                        {#                    <th>QQ昵称</th>#}
+                        <th>姓名</th>
+                        <th>性别</th>
+                        {#                    <th>手机号</th>#}
+                        {#                    <th>客户来源</th>#}
+                        <th>咨询课程</th>
+                        <th>班级类型</th>
+                        <th>状态</th>
+                        {#                    <th>咨询日期</th>#}
+                        <th>最后跟进时间</th>
+                        <th>销售</th>
+                        <th>意向班级</th>
+                        {% if request.path_info == '/crm/my_customer/' %}
+                            <th>跟进记录</th>
+                            <th>报名记录</th>
+                        {% endif %}
+                        <th>操作</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {% for customer in all_customer %}
+                        <tr>
+                            <td><input type="checkbox" name="id" value="{{ customer.id }}"></td>
+                            <td>{{ forloop.counter }}</td>
+                            <td>{{ customer.qq }}</td>
+                            {#                        <td>{{ customer.qq_name|default:'暂无' }}</td>#}
+                            <td>{{ customer.name|default:'暂无' }}</td>
+                            <td>{{ customer.get_sex_display }}</td>
+                            {#                        <td>{{ customer.phone|default:'暂无' }}</td>#}
+                            {#                        <td>{{ customer.get_source_display }}</td>#}
+                            <td>{{ customer.course }}</td>
+                            <td>{{ customer.get_class_type_display }}</td>
+                            <td>{{ customer.show_status }}</td>
+                            {#                        <td>{{ customer.date }}</td>#}
+                            <td>{{ customer.last_consult_date }}</td>
+                            <td>{{ customer.consultant }}</td>
+                            <td>{{ customer.show_classes }}</td>
+                            {% if request.path_info == '/crm/my_customer/' %}
+                                <td><a href="{% url 'consult_record' customer.id %}"><i
+                                        class="fa fa-eye"></i></a></td>
+                                <td>{{ customer.enroll_link }}</td>
+                            {% endif %}
+                            <td><a href="{% url 'edit_customer' customer.id %}?{{ query_params }}"><i
+                                    class="fa fa-edit fa-fw"></i></a>
+                            </td>
+                        </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+            </form>
+            <div style="text-align: center">
+                <nav aria-label="Page navigation">
+                    <ul class="pagination">
+                        {{ pagination }}
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </div>
+{% endblock %}

@@ -1,0 +1,293 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="zh-CN" class="fixed">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>智酷</title>
+    <link rel="apple-touch-icon" sizes="120x120" href="favicon/apple-icon-120x120.png">
+    <link rel="icon" type="image/png" sizes="192x192" href="favicon/android-icon-192x192.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="favicon/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="favicon/favicon-16x16.png">
+    <link rel="stylesheet" type="text/css" href="{% static 'bootstrap-3.3.7/css/bootstrap.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'font-awesome-4.7.0/css/font-awesome.css' %}">
+    <link rel="stylesheet" href="{% static 'layout2/css/animate.css' %}">
+    <link rel="stylesheet" href="{% static 'layout2/css/toastr.min.css' %}">
+    <link rel="stylesheet" href="{% static 'layout2/css/magnific-popup.css' %}">
+    <link rel="stylesheet" href="{% static 'layout2/css/style.css' %}">
+    <link type="text/css" rel="stylesheet" charset="UTF-8"
+          href="https://translate.googleapis.com/translate_static/css/translateelement.css">
+</head>
+{% block css %}
+
+{% endblock %}
+<body style="">
+<div class="wrap">
+    <div class="page-header">
+        <div class="leftside-header">
+            <div class="logo">
+                <a href="{% url 'customer' %}" class="on-click">
+                    <img alt="logo" src="{% static 'layout/img/top.svg' %}" style="width: 50px;height: 50px">
+                </a>
+            </div>
+            <div id="menu-toggle" class="visible-xs toggle-left-sidebar" data-toggle-class="left-sidebar-open"
+                 data-target="html">
+                <i class="fa fa-bars" aria-label="Toggle sidebar"></i>
+            </div>
+        </div>
+        <div class="rightside-header">
+            <div class="header-middle"></div>
+            <div class="header-section" id="search-headerbox">
+                <input type="text" name="search" id="search" placeholder="搜索...">
+                <i class="fa fa-search search" id="search-icon" aria-hidden="true"></i>
+                <div class="header-separator"></div>
+            </div>
+            <div class="header-section hidden-xs" id="notice-headerbox">
+                <div class="notice" id="checklist-notice">
+                    <i class="fa fa-check-square-o" aria-hidden="true"></i>
+                    <div class="dropdown-box basic">
+                        <div class="drop-header">
+                            <h3><i class="fa fa-check-square-o" aria-hidden="true"></i>任务清单</h3>
+                        </div>
+                        <div class="drop-content">
+                            <div class="widget-list list-to-do">
+                                <ul>
+                                    <li>
+                                        <div class="checkbox-custom checkbox-primary">
+                                            <input type="checkbox" id="check-s1" value="option1">
+                                            <label for="check-s1">完成班级人数统计</label>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <div class="checkbox-custom checkbox-primary">
+                                            <input type="checkbox" id="check-s2" value="option1" checked="">
+                                            <label for="check-s2">给飞哥调座位</label>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <div class="checkbox-custom checkbox-primary">
+                                            <input type="checkbox" id="check-s3" value="option1">
+                                            <label for="check-s3">招生办指标分析</label>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <div class="checkbox-custom checkbox-primary">
+                                            <input type="checkbox" id="check-s4" value="option1">
+                                            <label for="check-s4">画思维导图</label>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <div class="checkbox-custom checkbox-primary">
+                                            <input type="checkbox" id="check-s5" value="option1">
+                                            <label for="check-s5">维修四轴飞行器</label>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="drop-footer">
+                            <a>查看所有任务</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="notice" id="messages-notice">
+                    <i class="fa fa-comments-o" aria-hidden="true"></i>
+                    <span><i class="fa fa-exclamation-circle" aria-hidden="true"></i></span>
+                    <div class="dropdown-box basic">
+                        <div class="drop-header ">
+                            <h3><i class="fa fa-comments-o" aria-hidden="true"></i> 消息</h3>
+                            <span class="number">120</span>
+                        </div>
+                        <div class="drop-content">
+                            <div class="widget-list list-left-element">
+                                <ul>
+                                    <li>
+                                        <a href="#">
+                                            <div class="left-element"><img alt="John Doe"
+                                                                           src="{% static 'layout2/img/avatar_1.png' %}">
+                                            </div>
+                                            <div class="text">
+                                                <span class="title">黄思胡</span>
+                                                <span class="subtitle">领导要来视察</span>
+                                            </div>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#">
+                                            <div class="left-element"><img alt="Alice Smith"
+                                                                           src="{% static 'layout2/img/avatar_1.png' %}">
+                                            </div>
+                                            <div class="text">
+                                                <span class="title">飞天秋</span>
+                                                <span class="subtitle">今天下午?</span>
+                                            </div>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#">
+                                            <div class="left-element"><img alt="Klaus Wolf"
+                                                                           src="{% static 'layout2/img/avatar_1.png' %}">
+                                            </div>
+                                            <div class="text">
+                                                <span class="title">李浩天</span>
+                                                <span class="subtitle">五二班地板有点脏.</span>
+                                            </div>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="drop-footer">
+                            <a>查看所有消息</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="notice" id="alerts-notice">
+                    <i class="fa fa-bell-o" aria-hidden="true"></i>
+                    <span>4</span>
+                    <div class="dropdown-box basic">
+                        <div class="drop-header">
+                            <h3><i class="fa fa-bell-o" aria-hidden="true"></i> 通知</h3>
+                            <span class="number">4</span>
+                        </div>
+                        <div class="drop-content">
+                            <div class="widget-list list-left-element list-sm">
+                                <ul>
+                                    <li>
+                                        <a href="#">
+                                            <div class="left-element"><i class="fa fa-warning color-warning"></i></div>
+                                            <div class="text">
+                                                <span class="title">8 警告</span>
+                                                <span class="subtitle">今天请求</span>
+                                            </div>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#">
+                                            <div class="left-element"><i class="fa fa-flag color-danger"></i></div>
+                                            <div class="text">
+                                                <span class="title">错误</span>
+                                                <span class="subtitle">没有完成</span>
+                                            </div>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#">
+                                            <div class="left-element"><i class="fa fa-cog color-dark"></i></div>
+                                            <div class="text">
+                                                <span class="title">新设置</span>
+                                                <span class="subtitle"></span>
+                                            </div>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#">
+                                            <div class="left-element"><i class="fa fa-tasks color-success"></i></div>
+                                            <div class="text">
+                                                <span class="title">14 任务</span>
+                                                <span class="subtitle">完成</span>
+                                            </div>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#">
+                                            <div class="left-element"><i class="fa fa-envelope color-primary"></i></div>
+                                            <div class="text">
+                                                <span class="title">21 信息</span>
+                                                <span class="subtitle"> (查看更多)</span>
+                                            </div>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="drop-footer">
+                            <a>查看所有通知</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="header-separator"></div>
+            </div>
+            <div class="header-section" id="user-headerbox">
+                <div class="user-header-wrap">
+                    <div class="user-photo">
+                        <img src="{% static 'layout2/img/avatar_1.jpg' %}" alt="Jane Doe">
+                    </div>
+                    <div class="user-info">
+                        <span class="user-name">洪哥</span>
+                        <span class="user-profile">管理员</span>
+                    </div>
+                    <i class="fa fa-plus icon-open" aria-hidden="true"></i>
+                    <i class="fa fa-minus icon-close" aria-hidden="true"></i>
+                </div>
+                <div class="user-options dropdown-box">
+                    <div class="drop-content basic">
+                        <ul>
+                            <li><a href="#"><i class="fa fa-user" aria-hidden="true"></i> 个人中心</a>
+                            </li>
+                            <li><a href="{% url 'login' %}"><i class="fa fa-lock" aria-hidden="true"></i> 系统锁定</a>
+                            </li>
+                            <li><a href="#"><i class="fa fa-cog" aria-hidden="true"></i> 账号设置</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="header-separator"></div>
+            <div class="header-section">
+                <a href="pages_sign-in.html"><i class="fa fa-sign-out log-out" aria-hidden="true"></i></a>
+            </div>
+        </div>
+    </div>
+    <div class="page-body">
+        <div class="left-sidebar">
+            <div class="left-sidebar-header">
+                <div class="left-sidebar-title">导航栏</div>
+                <div class="left-sidebar-toggle c-hamburger c-hamburger--htla hidden-xs"
+                     data-toggle-class="left-sidebar-collapsed" data-target="html">
+                    <span></span>
+                </div>
+            </div>
+            <div id="left-nav" class="nano has-scrollbar">
+                <div class="nano-content" tabindex="0" style="right: -17px;">
+                    <nav>
+                        <ul class="nav" id="main-nav">
+                            <li class="active-item">
+                                <a href="{% url 'customer' %}">
+                                    <i class="fa fa-home" aria-hidden="true"></i><span>主页</span>
+                                </a>
+                            </li>
+                            {% load rbac %}
+                            {% menu request %}
+                        </ul>
+                    </nav>
+                </div>
+                <div class="nano-pane" style="display: block;">
+                    <div class="nano-slider" style="height: 235px; transform: translate(0px, 122.711px);"></div>
+                </div>
+            </div>
+        </div>
+        <div class="content">
+            {% breadcrumb request %}
+            {% block content %}
+
+            {% endblock %}
+        </div>
+{#        快速滑上去#}
+        <a href="#" class="scroll-to-top" style="display: inline;"><i class="fa fa-angle-double-up"></i></a>
+    </div>
+</div>
+<script src="{% static 'jQuery/jquery-1.10.2.js' %}"></script>
+<script src="{% static 'jQuery/jquery.min.js' %}"></script>
+<script src="{% static 'bootstrap-3.3.7/js/bootstrap.js' %}"></script>
+<script src="{% static 'layout2/js/nano-scroller.js' %}"></script>
+<script src="{% static 'layout2/js/template-script.min.js' %}"></script>
+<script src="{% static 'layout2/js/template-init.min.js' %}"></script>
+<script src="{% static 'layout2/js/toastr.min.js' %}"></script>
+<script src="{% static 'layout2/js/chart.min.js' %}"></script>
+<script src="{% static 'layout2/js/jquery.magnific-popup.min.js' %}"></script>
+<script src="{% static 'layout2/js/dashboard.js' %}"></script>
+{% block js %}
+
+{% endblock %}
+</body>
+</html>

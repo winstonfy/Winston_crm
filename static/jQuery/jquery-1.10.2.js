@@ -1,0 +1,1 @@
+document.write("<script src='/static/jQuery/jquery.min.js'><\/script>");

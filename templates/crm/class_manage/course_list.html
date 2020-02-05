@@ -1,0 +1,70 @@
+{% extends 'layout.html' %}
+
+{% block css %}
+    <style>
+        th, tr {
+            text-align: center;
+        }
+    </style>
+{% endblock %}
+{% block content %}
+    <div class="row animated fadeInUp">
+        <div class="col-sm-12 col-lg-12">
+            <a class="btn btn-primary" href="{% url 'add_course' class_id %}?{{ query_params }}">添加</a>
+            <div>
+                <form action="" class="form-inline pull-right">
+                    <input type="text" name="query" class="form-control">
+                    <button class="btn btn-sm btn-primary"><i class="fa fa-search search" id="search-icon"
+                                                              aria-hidden="true"></i></button>
+                </form>
+            </div>
+            <form action="" method="post" class="form-inline">
+                {% csrf_token %}
+                <select name="action" class="form-control" style="margin: 5px 0">
+                    <option value="multi_delete">删除记录</option>
+                    <option value="multi_init">初始化学习记录</option>
+                </select>
+                <button class="btn btn-success btn-sm">提交</button>
+                <table class="table table-hover table-vcenter table-striped mb-0 text-nowrap">
+                    <thead>
+                    <tr>
+                        <th>选择</th>
+                        <th>序号</th>
+                        <th>课程名称</th>
+                        <th>课程标题</th>
+                        <th>是否有作业</th>
+                        <th>上课日期</th>
+                        <th>班主任</th>
+                        <th>操作</th>
+
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {% for course in all_course %}
+                        <tr>
+                            <td><input type="checkbox" name="id" value="{{ course.id }}"></td>
+                            <td>{{ forloop.counter }}</td>
+                            <td><a href="{% url 'study_record_list' course.id %}">{{ course }}</a></td>
+                            <td>{{ course.course_title }}</td>
+                            <td>{{ course.has_homework}}</td>
+                            <td>{{ course.date }}</td>
+                            <td>{{ course.teacher}}</td>
+
+                            <td><a href="{% url 'edit_course' course.id %}?{{ query_params }}"><i
+                                    class="fa fa-edit fa-fw"></i></a>
+                            </td>
+                        </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+            </form>
+            <div style="text-align: center">
+                <nav aria-label="Page navigation">
+                    <ul class="pagination">
+                        {{ pagination }}
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </div>
+{% endblock %}
